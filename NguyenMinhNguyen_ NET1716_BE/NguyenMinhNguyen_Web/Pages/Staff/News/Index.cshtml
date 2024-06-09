@@ -1,0 +1,71 @@
+﻿@page
+@model NguyenMinhNguyen_Web.Pages.Staff.News.IndexModel
+
+@{
+    ViewData["Title"] = "News Article List";
+}
+
+<h1>News Article List</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Title
+            </th>
+            <th>
+                News Content
+            </th>
+            <th>
+                Status
+            </th>
+            <th>
+                Category
+            </th>
+            <th>
+                Owner
+            </th>
+            <th>
+                Created Date
+            </th>
+            <th>
+                Modified Date
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.NewsArticle) {
+        <tr>
+            <td>
+                @item.NewsTitle
+            </td>
+            <td>
+                @item.NewsContent
+            </td>
+            <td>
+                @(item.NewsStatus == true ? "Active" : "Inactive")
+            </td>
+            <td>
+                @item.Category.CategoryName
+            </td>
+            <td>
+                @item.CreatedBy.AccountName
+            </td>
+            <td>
+                @item.CreatedDate
+            </td>
+            <td>
+                @item.ModifiedDate
+            </td>
+            <td>
+                    <a asp-page="/Staff/News/Details" asp-route-id="@item.NewsArticleId">Detail</a>
+                    <a asp-page="/Staff/News/Delete" asp-route-id="@item.NewsArticleId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

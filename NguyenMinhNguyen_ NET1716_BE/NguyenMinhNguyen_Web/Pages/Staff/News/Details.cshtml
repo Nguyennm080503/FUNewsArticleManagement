@@ -1,0 +1,79 @@
+﻿@page
+@model NguyenMinhNguyen_Web.Pages.Staff.News.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>NewsArticle</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Title :
+        </dt>
+        <dd class="col-sm-10">
+            @Model.NewsArticle.NewsTitle
+        </dd>   
+        <dt class="col-sm-2">
+            News Content : 
+        </dt>
+        <dd class="col-sm-10">
+            @Model.NewsArticle.NewsTitle
+        </dd>
+        <dt class="col-sm-2">
+            Status :
+        </dt>
+        <dd class="col-sm-10">
+            @(Model.NewsArticle.NewsStatus == true ? "Active" : "Inactive")
+        </dd>
+        <dt class="col-sm-2">
+            Category :
+        </dt>
+        <dd class="col-sm-10">
+            @Model.NewsArticle.Category.CategoryName
+        </dd>
+        <dt class="col-sm-2">
+            Account Name : 
+        </dt>
+        <dd class="col-sm-10">
+            @Model.NewsArticle.CreatedBy.AccountName
+        </dd>
+        <dt class="col-sm-2">
+            Account Email :
+        </dt>
+        <dd class="col-sm-10">
+            @Model.NewsArticle.CreatedBy.AccountEmail
+        </dd>
+        <dt class="col-sm-2">
+            Tags:
+        </dt>
+        <dd class="col-sm-10">
+            <ul>
+                @foreach (var newsTag in Model.TagResponses)
+                {
+                    <li>@newsTag.TagName</li>
+                }
+            </ul>
+        </dd>
+        <dt class="col-sm-2">
+            Created Date :
+        </dt>
+        <dd class="col-sm-10">
+            @Model.NewsArticle.CreatedDate
+        </dd>
+        <dt class="col-sm-2">
+            Modified Date
+        </dt>
+        <dd class="col-sm-10">
+            @Model.NewsArticle.ModifiedDate
+        </dd>
+    </dl>
+    <br/>
+    <br />
+</div>
+<div>
+    <a asp-page="/Staff/News/Index">Back to List</a>
+</div>

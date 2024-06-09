@@ -1,0 +1,41 @@
+﻿@page
+@model NguyenMinhNguyen_Web.Pages.Staff.Type.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Category Name
+            </th>
+            <th>
+                Description
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Category) {
+        <tr>
+            <td>
+                @item.CategoryName
+            </td>
+            <td>
+                @item.CategoryDesciption
+            </td>
+            <td>
+                <a asp-page="/Staff/Type/Edit" asp-route-id="@item.CategoryId">Edit</a> |
+                <a asp-page="/Staff/Type/Delete" asp-route-id="@item.CategoryId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,63 @@
+﻿@page
+@model NguyenMinhNguyen_Web.Pages.Staff.MyNews.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                News Title
+            </th>
+            <th>
+                News Content
+            </th>
+            <th>
+                Status
+            </th>
+            <th>
+                Category
+            </th>
+            <th>
+                Created Date
+            </th>
+            <th>
+                Modifie dDate
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.NewsArticle) {
+        <tr>
+            <td>
+                @item.NewsTitle
+            </td>
+            <td>
+                @item.NewsContent
+            </td>
+            <td>
+                @(item.NewsStatus == true ? "Active" : "Inactive")
+            </td>
+            <td>
+                @item.Category.CategoryName
+            </td>
+            <td>
+                @item.CreatedDate
+            </td>
+            <td>
+                @item.ModifiedDate
+            </td>
+            <td>
+                    <a asp-page="/Staff/MyNews/Edit" asp-route-id="@item.NewsArticleId">Edit</a> |
+                    <a asp-page="/Staff/MyNews/Details" asp-route-id="@item.NewsArticleId">Details</a> |
+                    <a asp-page="/Staff/MyNews/Delete" asp-route-id="@item.NewsArticleId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

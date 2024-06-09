@@ -1,0 +1,51 @@
+﻿@page
+@model NguyenMinhNguyen_Web.Pages.Admin.DashboardModel
+@{
+    ViewData["Title"] = "Report Statistics";
+}
+
+<h2>Report Statistics</h2>
+
+<form method="post">
+    <div class="form-group">
+        <label for="StartDate">Start Date</label>
+        <input type="date" id="StartDate" name="StartDate" class="form-control" asp-for="StartDate" required />
+    </div>
+    <div class="form-group">
+        <label for="EndDate">End Date</label>
+        <input type="date" id="EndDate" name="EndDate" class="form-control" asp-for="EndDate" required />
+    </div>
+    <br/>
+    <br/>
+    <button type="submit" class="btn btn-primary">Generate Report</button>
+</form>
+
+@if (Model.ReportDatas != null && Model.ReportDatas.Any())
+{
+    <h3>Report Results</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Total News</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.ReportDatas)
+            {
+                <tr>
+                    <td>@item.Date.ToString("yyyy-MM-dd")</td>
+                    <td>@item.TotalNews</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else if (ModelState.IsValid)
+{
+    <p style="text-align: center">No data</p>
+}
+else
+{
+    <p style="text-align: center; color: red">@ModelState.Values.FirstOrDefault()?.Errors.FirstOrDefault()?.ErrorMessage</p>
+}

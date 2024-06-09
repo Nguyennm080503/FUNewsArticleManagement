@@ -1,0 +1,36 @@
+﻿@page
+@model NguyenMinhNguyen_Web.Pages.Account.IndexModel
+
+@{
+    ViewData["Title"] = "Account List";
+}
+
+<h1>Account List</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Account Name</th>
+            <th>Account Email</th>
+            <th>Account Role</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.SystemAccount)
+        {
+            <tr>
+                <td>@item.AccountName</td>
+                <td>@item.AccountEmail</td>
+                <td>@(item.AccountRole == 1 ? "Staff" : "Lecturer")</td>
+                <td>
+                    <a asp-page="/Admin/Account/Edit" asp-route-id="@item.AccountId">Edit</a> |
+                    <a asp-page="/Admin/Account/Delete" asp-route-id="@item.AccountId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

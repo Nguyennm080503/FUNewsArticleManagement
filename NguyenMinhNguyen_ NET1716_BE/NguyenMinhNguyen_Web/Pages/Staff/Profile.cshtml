@@ -1,0 +1,33 @@
+﻿@page
+@model NguyenMinhNguyen_Web.Pages.Staff.ProfileModel
+@{
+    ViewData["Title"] = "Profile";
+}
+
+<h1>My profile</h1>
+<hr />
+<div>
+    <h4>My profile</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Account Name :
+        </dt>
+        <dd class="col-sm-10">
+            @Model.SystemAccount.AccountName
+        </dd>
+        <dt class="col-sm-2">
+            Account Email :
+        </dt>
+        <dd class="col-sm-10">
+            @Model.SystemAccount.AccountEmail
+        </dd>
+    </dl>
+</div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
